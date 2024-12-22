@@ -12,7 +12,10 @@ class Parser:
 
     def download_soup(self):
         if self.soup is None:
-            res = req.get(self.url)
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0"
+            }
+            res = req.get(self.url, headers=headers)
             self.soup = BeautifulSoup(res.text, features="html.parser")
 
     def get_link(self):
