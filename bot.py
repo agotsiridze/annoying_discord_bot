@@ -7,6 +7,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 
 from html_parser import Parser
+from timer import set_timer
 
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -32,8 +33,9 @@ async def on_ready():
 async def random_play():
     while True:
         try:
-            wait_time = random.randint(300, 900)
-            await asyncio.sleep(wait_time)
+            wait_time = random.randint(150, 900)
+            # await asyncio.sleep(wait_time)
+            await set_timer(wait_time)
             channel_id = int(CHANNEL_ID)
             guild = bot.guilds[0]
             voice_channel = discord.utils.get(guild.voice_channels, id=channel_id)
